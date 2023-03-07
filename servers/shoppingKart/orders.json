@@ -1,0 +1,22 @@
+{
+    "1":{
+        "name":"Notebook",
+        "quantity":1,
+        "price_for_unit":45 
+    },
+    "2":{
+        "name":"Pencil",
+        "quantity":1,
+        "price_for_unit":55 
+    },
+    "3":{
+        "name":"Calendar",
+        "quantity":1,
+        "price_for_unit":65 
+    },
+    "4":{
+        "name":"Whiteboard",
+        "quantity":1,
+        "price_for_unit":75 
+    }
+}
