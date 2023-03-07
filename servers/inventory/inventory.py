@@ -31,7 +31,6 @@ class Inventory(inventory_pb2_grpc.InventoryServicer):
         with open("inventory.json","r") as productList:
             inventory = json.loads(productList.read())
 
-        inventory[productID]["quantity"]=inventory[productID]["quantity"]+productQuantity
 
         if productID in inventory.keys():
             inventory[productID]["quantity"] += productQuantity
