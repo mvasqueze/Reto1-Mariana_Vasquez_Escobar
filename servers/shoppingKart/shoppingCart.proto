@@ -1,0 +1,19 @@
+syntax="proto3";
+
+message addToOrder{
+    string id = 1;
+    int32 quantity =2;
+}
+
+message confirmOrder{
+    string id = 1;
+}
+
+message TransactionResponse{
+    int32 status_code = 1;
+}
+
+service ShoppingCart{
+    rpc AddProduct(addToOrder) returns (TransactionResponse);
+    rpc ConfirmOrder(confirmOrder) returns (TransactionResponse);
+}

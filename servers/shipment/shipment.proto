@@ -1,0 +1,18 @@
+syntax="proto3";
+
+message Package {
+    string address=1;
+    int32 productQuantity=2;
+}
+
+message ShipmentConfirmation{
+    string aproximateDate =2;
+}
+
+message TransactionResponse{
+    int32 status_code = 1;
+}
+
+service Shipment{
+    rpc ShipmentRegister(Package) returns (ShipmentConfirmation);
+}

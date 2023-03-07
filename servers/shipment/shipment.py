@@ -2,12 +2,12 @@ from concurrent import futures
 
 import json
 import grpc
-import services_pb2
-import services_pb2_grpc
+import shipment_pb2
+import shipment_pb2_grpc
 
-HOST = '[::]:8080'
+HOST = '[::]:8082'
 
-class Shipment(services_pb2_grpc.ShipmentServicer):
+class Shipment(shipment_pb2_grpc.ShipmentServicer):
     def ShipmentRegister(self, request, context):
         packageID = request.id
         packageAdd = request.address
@@ -21,17 +21,17 @@ class Shipment(services_pb2_grpc.ShipmentServicer):
 
             with open("shippings.json", "w") as packageAddressOut:
                 json.dump(packages, packageAddressOut, indent="")
-            return services_pb2.TransactionResponse(status_code=1)
+            return shipment_pb2.TransactionResponse(status_code=1)
         
         else:
             print("\nRequest received. Package ID: "+packageID+" does not exist in this packages.")
-            return services_pb2.TransactionResponse(status_code=0)
+            return shipment_pb2.TransactionResponse(status_code=0)
             
     
     
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    services_pb2_grpc.add_ShipmentServicer_to_server(
+    shipment_pb2_grpc.add_ShipmentServicer_to_server(
         Shipment(), server)
     server.add_insecure_port(HOST)
     print("Service is running... ")

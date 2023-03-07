@@ -2,12 +2,12 @@ from concurrent import futures
 
 import json
 import grpc
-import services_pb2
-import services_pb2_grpc
+import shoppingCart_pb2
+import shoppingCart_pb2_grpc
 
-HOST = '[::]:8080'
+HOST = '[::]:8081'
 
-class ShoppingCart(services_pb2_grpc.ShoppingCartServicer):
+class ShoppingCart(shoppingCart_pb2_grpc.ShoppingCartServicer):
     def AddProduct(self, request, context):
         productID = request.id
         print("\nRequest received. Hendling product "+productID)
@@ -17,12 +17,12 @@ class ShoppingCart(services_pb2_grpc.ShoppingCartServicer):
         if productID in orders.keys():
             print("\nRequest received. Product ID: "+productID+ 
                   ". Product name: "+orders[productID]["name"]+
-                  ". Product quantity: "+orders[productID]["quantity"]+".")
-            return services_pb2.TransactionResponse(status_code=1)
+                  ". Product quantity: "+str(orders[productID]["quantity"])+".")
+            return shoppingCart_pb2.TransactionResponse(status_code=1)
         
         else:
             print("\nRequest received. Product ID: "+productID+" does not exist in this orders.")
-            return services_pb2.TransactionResponse(status_code=0)
+            return shoppingCart_pb2.TransactionResponse(status_code=0)
             
     def ConfirmOrder(self, request, context):
         productID = request.id
@@ -35,13 +35,13 @@ class ShoppingCart(services_pb2_grpc.ShoppingCartServicer):
         finalPrice = units*price
 
         if productID in orders.keys():
-            print("\nThe total price of your order is "+finalPrice)
+            print("\nThe total price of your order is "+str(finalPrice))
 
-        return super().setProducts(request, context)
+        return shoppingCart_pb2.TransactionResponse(status_code=1)
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    services_pb2_grpc.add_ShoppingCartServicer_to_server(
+    shoppingCart_pb2_grpc.add_ShoppingCartServicer_to_server(
         ShoppingCart(), server)
     server.add_insecure_port(HOST)
     print("Service is running... ")
