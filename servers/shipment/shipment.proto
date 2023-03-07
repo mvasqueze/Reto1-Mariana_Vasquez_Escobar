@@ -1,8 +1,9 @@
 syntax="proto3";
 
-message Package {
-    string address=1;
-    int32 productQuantity=2;
+message getPackage {
+    string id = 1;
+    string address=2;
+    int32 productQuantity=3;
 }
 
 message ShipmentConfirmation{
@@ -14,5 +15,5 @@ message TransactionResponse{
 }
 
 service Shipment{
-    rpc ShipmentRegister(Package) returns (ShipmentConfirmation);
+    rpc ShipmentRegister(getPackage) returns (TransactionResponse);
 }

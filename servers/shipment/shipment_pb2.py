@@ -13,17 +13,19 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0eshipment.proto\"3\n\x07Package\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\t\x12\x17\n\x0fproductQuantity\x18\x02 \x01(\x05\".\n\x14ShipmentConfirmation\x12\x16\n\x0e\x61proximateDate\x18\x02 \x01(\t2?\n\x08Shipment\x12\x33\n\x10ShipmentRegister\x12\x08.Package\x1a\x15.ShipmentConfirmationb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0eshipment.proto\"B\n\ngetPackage\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0f\n\x07\x61\x64\x64ress\x18\x02 \x01(\t\x12\x17\n\x0fproductQuantity\x18\x03 \x01(\x05\".\n\x14ShipmentConfirmation\x12\x16\n\x0e\x61proximateDate\x18\x02 \x01(\t\"*\n\x13TransactionResponse\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x05\x32\x41\n\x08Shipment\x12\x35\n\x10ShipmentRegister\x12\x0b.getPackage\x1a\x14.TransactionResponseb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'shipment_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _PACKAGE._serialized_start=18
-  _PACKAGE._serialized_end=69
-  _SHIPMENTCONFIRMATION._serialized_start=71
-  _SHIPMENTCONFIRMATION._serialized_end=117
-  _SHIPMENT._serialized_start=119
-  _SHIPMENT._serialized_end=182
+  _GETPACKAGE._serialized_start=18
+  _GETPACKAGE._serialized_end=84
+  _SHIPMENTCONFIRMATION._serialized_start=86
+  _SHIPMENTCONFIRMATION._serialized_end=132
+  _TRANSACTIONRESPONSE._serialized_start=134
+  _TRANSACTIONRESPONSE._serialized_end=176
+  _SHIPMENT._serialized_start=178
+  _SHIPMENT._serialized_end=243
 # @@protoc_insertion_point(module_scope)

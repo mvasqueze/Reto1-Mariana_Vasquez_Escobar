@@ -9,14 +9,15 @@ HOST = '[::]:8082'
 
 class Shipment(shipment_pb2_grpc.ShipmentServicer):
     def ShipmentRegister(self, request, context):
-        packageID = request.id
+        packageID= str(request.id)
         packageAdd = request.address
-        print("\nRequest received. Handling package "+packageID)
+        packageQuant= request.productQuantity
+        print("\nRequest received. Handling package with id "+packageID)
         with open("shippings.json","r") as packageList:
             packages = json.loads(packageList.read())
 
         if packageID in packages.keys():
-            print("\nRequest received. Package ID: "+packageID+".")
+            print("\nRequest received. Package id: "+packageID+", Product quantity: "+ str(packageQuant)+ ". New package address: "+packageAdd+".")
             packages[packageID]["address"]=packageAdd
 
             with open("shippings.json", "w") as packageAddressOut:

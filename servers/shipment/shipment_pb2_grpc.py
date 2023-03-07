@@ -16,8 +16,8 @@ class ShipmentStub(object):
         """
         self.ShipmentRegister = channel.unary_unary(
                 '/Shipment/ShipmentRegister',
-                request_serializer=shipment__pb2.Package.SerializeToString,
-                response_deserializer=shipment__pb2.ShipmentConfirmation.FromString,
+                request_serializer=shipment__pb2.getPackage.SerializeToString,
+                response_deserializer=shipment__pb2.TransactionResponse.FromString,
                 )
 
 
@@ -35,8 +35,8 @@ def add_ShipmentServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ShipmentRegister': grpc.unary_unary_rpc_method_handler(
                     servicer.ShipmentRegister,
-                    request_deserializer=shipment__pb2.Package.FromString,
-                    response_serializer=shipment__pb2.ShipmentConfirmation.SerializeToString,
+                    request_deserializer=shipment__pb2.getPackage.FromString,
+                    response_serializer=shipment__pb2.TransactionResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,7 +60,7 @@ class Shipment(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Shipment/ShipmentRegister',
-            shipment__pb2.Package.SerializeToString,
-            shipment__pb2.ShipmentConfirmation.FromString,
+            shipment__pb2.getPackage.SerializeToString,
+            shipment__pb2.TransactionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
