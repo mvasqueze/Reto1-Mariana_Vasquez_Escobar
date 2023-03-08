@@ -40,7 +40,7 @@ function main(){
 
       // add product to cart
       const client2 = new shoppingCartService(REMOTE_HOST_SHOP,grpc.credentials.createInsecure());
-      client2.AddProduct({id: productId} , (err2, data2) => {
+      client2.AddProduct({id: productId, quantity:3} , (err2, data2) => {
         if(err2){
           console.log(err2);
         } else {
@@ -56,7 +56,7 @@ function main(){
 
               // register shipment
               const client4 = new shipmentService(REMOTE_HOST_SHIP,grpc.credentials.createInsecure());
-              client4.ShipmentRegister({id: "1", address: "Avenida 123"} , (err4, data4) => {
+              client4.ShipmentRegister({id: "1", address: "Avenida 123", productQuantity:3} , (err4, data4) => {
                 if(err4){
                   console.log(err4);
                 } else {
