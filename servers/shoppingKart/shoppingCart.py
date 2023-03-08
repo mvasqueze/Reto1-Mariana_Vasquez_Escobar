@@ -10,7 +10,7 @@ HOST = '[::]:8081'
 class ShoppingCart(shoppingCart_pb2_grpc.ShoppingCartServicer):
     def AddProduct(self, request, context):
         productID = request.id
-        print("\nRequest received. Hendling product "+productID)
+        print("\nRequest received. Handling product "+productID)
         with open("orders.json","r") as orderList:
             orders = json.loads(orderList.read())
 

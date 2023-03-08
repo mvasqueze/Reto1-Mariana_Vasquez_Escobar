@@ -1,111 +1,97 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
-</p>
 
-<h3 align="center">Project Title</h3>
+
+<h3 align="center">Reto 1 de Programación</h3>
 
 <div align="center">
 
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+Mariana Vásquez Escobar - Tópicos especiales en Telemática
 
 </div>
 
 ---
 
-<p align="center"> Few lines describing your project.
-    <br> 
-</p>
-
 ## 📝 Table of Contents
 
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
+- [Descripción del proyecto](#about)
+- [Alcance del proyecto](#getting_started)
+- [Estructura del proyecto](#deployment)
+- [Arquitectura de la solución planteada](#usage)
+- [Resultados logrados](#built_using)
+- [Descripción técnica de la solución implementada](../TODO.md)
 - [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
+- [Guía de uso](#authors)
 - [Acknowledgments](#acknowledgement)
 
-## 🧐 About <a name = "about"></a>
+## Descripción del proyecto <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+El presente proyecyo busca afianzar y demostrar las habilidades adquiridas a través del laboratorio 1 en la implementación de la arquitectura de microservicios a través de gRPC.
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+## Alcance del proyecto <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+El objetivo del proyecto es implementar una arquitectura de tres microservicios usando dos lenguajes programación diferentes, así como un cliente, estando los cuatro servidores desplegados en máquinas de AWS.
 
-### Prerequisites
+Se busca retratar el funcionamiento de una tienda online, implementando servicios de inventario (inventory), carrito de compras (shoppingCart) y envíos (shipment).
 
-What things you need to install the software and how to install them.
 
-```
-Give examples
-```
+## Estructura del proyecto <a name = "tests"></a>
 
-### Installing
+El repositorio se encuentra inicialmente dividido en la carpeta servers (que guarda los microservicios), el código de javascript del cliente (client.js) y el presente README.md; En la carpeta servers se encuentran a su vez tres carpetas, cada una correspondiente a un microservicio y conservando la misma estructura. Se dará el ejemplo con la carpeta inventory:
 
-A step by step series of examples that tell you how to get a development env running.
+Inventory>
+    - Archivos generados para el uso de grpc (inventory_pb2_grpc.py,inventory_pb2.py, inventory_pb2.pyi).
+    - Código de python correspondiente al microservicio (inventory.py).
+    - Código .proto para enlazar con grpc (inventory.proto).
+    - Un archivo que funciona como persistencia de datos (inventory.proto).
 
-Say what the step will be
 
-```
-Give the example
-```
 
-And repeat
+## Arquitectura de la solución planteada <a name="usage"></a>
 
-```
-until finished
-```
+Se logró implementar una arquitectura orientada a microservicios, usando Postman para simular el cliente.
 
-End with an example of getting some data out of the system or using it for a little demo.
+## Resultados logrados <a name = "deployment"></a>
 
-## 🔧 Running the tests <a name = "tests"></a>
+Se lograron implementar tres microservicios en python, los cuales es posible conectar por gRPC y a los cuales es posible hacer peticiones por medio de postman.
 
-Explain how to run the automated tests for this system.
+El código client.js fue planteado, sin embargo no fue probado.
 
-### Break down into end to end tests
+  ### Problemas encontrados y objetivos no logrados
+      - Por limitaciones externas (las máquinas de AWS empleadas no guardaban el código) y limitaciones de tiempo, se decidió limitar el proyecto con el uso de postman como canal de comunicación.
+      - Se pedían dos lenguajes de programación en los microservicios, solo se desarollaron con uno.
+      - El cliente, si bien fue creado, por limitaciones logísticas, de tiempo y de conocimiento, no fue debidamente ejecutado y probado.
+      - La lógica de cada microservicio tiene oportunidades de mejora.
 
-Explain what these tests test and why
 
-```
-Give an example
-```
+## Descripción técnica de la solución implementada <a name = "built_using"></a>
 
-### And coding style tests
+Para el desarrollo del presente proyecto fueron ejecutados los siguientes comandos:
 
-Explain what these tests test and why
+pip install grpcio-tools grpcio googleapis-common-protos
 
-```
-Give an example
-```
+Para la generación de archivos service_pb2_grpc.py,service_pb2.py, service_pb2.pyi se ejecutó el siguiente comando dentro de cada carpeta:
 
-## 🎈 Usage <a name="usage"></a>
+python -m grpc_tools.protoc -I..\carpeta\ --python_out=. --grpc_python_out=. --mypy_grpc_out=. .\service.proto
 
-Add notes about how to use the system.
+Los archivos que genera ya están en el presente repositorio, por lo que no es necesario que sea ejecutado en la consola.
 
-## 🚀 Deployment <a name = "deployment"></a>
+  ### Extensiones de VS utilizadas para el presente proyecto
+  - vscode-proto3
+  - Readme Pattern
 
-Add additional notes about how to deploy this on a live system.
+Cabe anotar que para ejecutar este proyecto es necesario tener Postman y Python instalado.
 
-## ⛏️ Built Using <a name = "built_using"></a>
+## Guía de uso <a name = "authors"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+1. Clone el repositorio.
+2. Ubíquese en cada una de las carpetas de la carpeta servers y ejecute el comando:
 
-## ✍️ Authors <a name = "authors"></a>
+    python service.py
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+Reemplazando "Service" por el respectivo servicio (inventory, shoppingCart, shipment)
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+3. Siga el siguiente tutorial para probar con Postman:
+
+
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
