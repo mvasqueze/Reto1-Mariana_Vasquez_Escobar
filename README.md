@@ -91,7 +91,7 @@ Reemplazando "Service" por el respectivo servicio (inventory, shoppingCart, ship
 
 3. Siga el siguiente tutorial para probar con Postman:
 
-https://youtu.be/Zm3eoynY-JA
+https://youtu.be/hrp727UVhbw
 
 ## Bibliografía <a name = "acknowledgement"></a>
 - https://daily.dev/blog/build-a-grpc-service-in-nodejs
